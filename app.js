@@ -20,7 +20,8 @@ questionsArray.push(question5);
 
 // for(var key in questionsArray){
 // 	console.log(questionsArray[key].front);
-var count = 0
+var count = 0;
+var score = 0;
 //do recursion stuff here var 
 var askQuestion = function(){
 	if(count < 5){
@@ -34,30 +35,26 @@ var askQuestion = function(){
 		    }
 		  ])
 		  .then(function(inquirerResponse) {
-		    // If the inquirerResponse confirms, we displays the inquirerResponse's username and pokemon from the answers.
+		    //checks answers
+		    // questionNum = "question" + count;
+		    var response = inquirerResponse.question1.toLowerCase();
+		    // console.log(response);
+		    if(response == questionsArray[count].back){
+		    	console.log(response + " is equal to " + questionsArray[count].back);
+		    	score ++;
+		    }
+		    else{
+		    	console.log(response + " is not equal to " + questionsArray[count].back);
+		    }
+
 		    count++;
 
 		    askQuestion();
-
+		    console.log("You scored " + score + " out of 5");
 		  });
 	}
 };
 
 askQuestion();
-//}
-// var ReadFile = function(){
-// 	// console.log('test');
-// 	fs.readFile("questions.json", "utf8", function(error, data){
-// 		if(error){
-// 			return console.log(error);
-// 		}
-// 		// console.log(data);
-// 		var splitArray = JSON.parse(data);
-// 		// console.log(splitArray[0]);
-// 	});
-// };
 
 
-// ReadFile();
-// var question1 = new BasicCard();
-// module.exports = ReadFile;
